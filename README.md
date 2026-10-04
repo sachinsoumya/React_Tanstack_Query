@@ -1,16 +1,17 @@
-# React + Vite
+- Installed and set up Vite + React app .
+- Installed react-router-dom
+- Installed and configured Tailwind CSS and DaisyUI
+- Installed and configured Axios.
+- Created components folder inside src folder.
+  src
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+  ## components/Layout/Ui
 
-Currently, two official plugins are available:
+  ## Layout/Footer.jsx , Header.jsx, MainLayout.jsx
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+  ## Ui/Fetchold.jsx , FetchRQ.jsx , Home.jsx
 
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- Imported and used CreateBrowseRouter , RouterProvider, Outlet , NavLink from react-router-dom for client routing and Navigation.
+- See traditional way data fetching , managing and rendering in Fetchold component.
+- See React query data fetching , managing and rendering in FetchRQ component using hook like useQuery( key: ["abc"],queryFun: function (){});
+- Created the queryClient instance (new QueryClient()) and Wrap the whole React app within <QueryClientProvider client={new QueryClient()}></QueryClientProvider>
