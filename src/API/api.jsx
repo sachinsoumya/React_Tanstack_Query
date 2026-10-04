@@ -5,5 +5,5 @@ const api = axios.create({
 });
 
 export const fetchData = () => {
-  return api.get("/postss");
+  return api.get("/posts");
 };
