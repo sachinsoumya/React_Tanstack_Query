@@ -17,7 +17,9 @@ export const FetchRQ = () => {
     queryKey: ["posts"],
     queryFn: getData,
     // gcTime: 1000*60*5
-    staleTime : 1000 *10
+    // staleTime : 1000 *10,
+    refetchInterval: 1000,
+    refetchIntervalInBackground: true,
   });
 
   if (isPending) return <h1>Loading...</h1>;
