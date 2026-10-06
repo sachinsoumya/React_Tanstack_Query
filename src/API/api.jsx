@@ -1,11 +1,11 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "https://jsonplaceholder.typicode.com",
+  baseURL: "https://dummyjson.com",
 });
 
-export const fetchData = () => {
-  return api.get("/posts");
+export const fetchData = (skip) => {
+  return api.get(`/posts?limit=3&skip=${skip}`);
 };
 
 export const fetchIndividualPost = async (id) => {

@@ -23,3 +23,9 @@
   queryKey: ["posts", id],
   queryFn: () => fetchIndividualPost(id),
   }); . Whenever the value of id changes the fetchIndividualPost(id) will be called with new id value.
+- Added pagination used limit and skip on api . 
+- used placeholderData: keepPreviousData within useQuery() hook.
+
+
+
+

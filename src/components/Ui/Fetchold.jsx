@@ -24,7 +24,7 @@ export const Fetchold = () => {
   return (
     data && (
       <div>
-        {data.map((item) => (
+        {data?.posts?.map((item) => (
           <div className="card w-96 bg-base-100 card-md shadow-sm">
             <div className="card-body">
               <h2 className="card-title">Medium Card</h2>
