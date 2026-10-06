@@ -17,3 +17,9 @@
 - Created the queryClient instance (new QueryClient()) and Wrap the whole React app within <QueryClientProvider client={new QueryClient()}></QueryClientProvider>
 - gcTime - The time duration in which the data will be there in cache. staleTime - The time duration in which the fetched data will remain fresh in cache and not calling the api again.
 - Api Polling , refetchInterval:1000 and refetchIntervalInBackground:true
+- Configured router path of <IndividualPost /> component and in root component like App.jsx
+- Used useParams() hook to get the dynamic id value in router params.
+- Created <IndividualPost /> component to get the details of single post . Passed "id" as query keys like const { data, isPending, isError, error } = useQuery({
+  queryKey: ["posts", id],
+  queryFn: () => fetchIndividualPost(id),
+  }); . Whenever the value of id changes the fetchIndividualPost(id) will be called with new id value.

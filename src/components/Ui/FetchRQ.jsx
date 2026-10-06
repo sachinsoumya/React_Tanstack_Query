@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { fetchData } from "../../API/api";
+import { NavLink } from "react-router-dom";
 export const FetchRQ = () => {
   const getData = async () => {
     try {
@@ -18,8 +19,8 @@ export const FetchRQ = () => {
     queryFn: getData,
     // gcTime: 1000*60*5
     // staleTime : 1000 *10,
-    refetchInterval: 1000,
-    refetchIntervalInBackground: true,
+    // refetchInterval: 1000,
+    // refetchIntervalInBackground: true,
   });
 
   if (isPending) return <h1>Loading...</h1>;
@@ -30,13 +31,15 @@ export const FetchRQ = () => {
       <div>
         {data.map((item) => (
           <div className="card w-96 bg-base-100 card-md shadow-sm">
-            <div className="card-body">
-              <h2 className="card-title">Medium Card</h2>
-              <p>{item.title}</p>
-              <div className="justify-end card-actions">
-                <button className="btn btn-primary">Buy Now</button>
+            <NavLink to={`/post/${item.id}`}>
+              <div className="card-body">
+                <h2 className="card-title">Medium Card</h2>
+                <p>{item.title}</p>
+                <div className="justify-end card-actions">
+                  <button className="btn btn-primary">Buy Now</button>
+                </div>
               </div>
-            </div>
+            </NavLink>
           </div>
         ))}
       </div>

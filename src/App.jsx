@@ -8,6 +8,7 @@ import { Fetchold } from "./components/Ui/Fetchold";
 import { Home } from "./components/Ui/Home";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { IndividualPost } from "./components/Ui/IndividualPost";
 
 const router = createBrowserRouter([
   {
@@ -26,6 +27,10 @@ const router = createBrowserRouter([
         path: "/react-query",
         element: <FetchRQ />,
       },
+      {
+        path:"/post/:id",
+        element:<IndividualPost/>
+      }
     ],
   },
 ]);
