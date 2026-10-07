@@ -1,5 +1,10 @@
-import { keepPreviousData, useQuery } from "@tanstack/react-query";
-import { fetchData } from "../../API/api";
+import {
+  keepPreviousData,
+  useMutation,
+  useQuery,
+  useQueryClient,
+} from "@tanstack/react-query";
+import { fetchData, deleteIndividualPost } from "../../API/api";
 import { NavLink } from "react-router-dom";
 import { useState } from "react";
 export const FetchRQ = () => {
@@ -17,6 +22,8 @@ export const FetchRQ = () => {
     }
   };
 
+  const queryClient = useQueryClient();
+
   const { data, isPending, isError, error } = useQuery({
     queryKey: ["posts", skip],
     queryFn: () => getData(skip),
@@ -24,8 +31,27 @@ export const FetchRQ = () => {
     // staleTime : 1000 *10,
     // refetchInterval: 1000,
     // refetchIntervalInBackground: true,
-    placeholderData: keepPreviousData
+    placeholderData: keepPreviousData,
   });
+
+  const deleteMutation = useMutation({
+    mutationFn: (id) => deleteIndividualPost(id),
+    onSuccess: (data, id) => {
+      const filteredData = queryClient.setQueryData(
+        ["posts", skip],
+        (currentData) => {
+          return (currentData.posts ?? currentData)?.filter(
+            (item) => item.id !== id,
+          );
+        },
+      );
+      console.log(filteredData);
+    },
+  });
+
+  // const deleteData = async (id)=>{
+
+  // }
 
   console.log(data);
 
@@ -35,21 +61,27 @@ export const FetchRQ = () => {
   return (
     data && (
       <div>
-        {data?.posts?.map((item) => (
+        {(data.posts ?? data).map((item) => (
           <div className="card w-96 bg-base-100 card-md shadow-sm">
-            <NavLink to={`/post/${item.id}`}>
-              <div className="card-body">
-                <h2 className="card-title">Medium Card</h2>
+            <div className="card-body">
+              <h2 className="card-title">Medium Card</h2>
+              <NavLink to={`/post/${item.id}`}>
                 <p>
                   {item.title}- {item.id}
                 </p>
-                <div className="justify-end card-actions">
-                  <button className="btn btn-primary">Buy Now</button>
-                </div>
+              </NavLink>
+              <div className="justify-end card-actions">
+                <button
+                  className="btn btn-primary"
+                  onClick={() => deleteMutation.mutate(item.id)}
+                >
+                  Delete
+                </button>
               </div>
-            </NavLink>
+            </div>
           </div>
         ))}
+
         <div className="flex justify-between w-1/6 m-auto mt-5">
           <button
             className="btn btn-soft"

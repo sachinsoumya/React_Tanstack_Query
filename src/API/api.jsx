@@ -17,3 +17,13 @@ export const fetchIndividualPost = async (id) => {
     console.log(err.message);
   }
 };
+
+export const deleteIndividualPost = async (id) => {
+  try {
+    const response = await api.delete(`/posts/${id}`);
+
+    return response.data;
+  } catch (err) {
+    console.log(err.message);
+  }
+};

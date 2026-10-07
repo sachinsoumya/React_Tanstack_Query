@@ -25,6 +25,8 @@
   }); . Whenever the value of id changes the fetchIndividualPost(id) will be called with new id value.
 - Added pagination used limit and skip on api . 
 - used placeholderData: keepPreviousData within useQuery() hook.
+- used useMutation , and .mutate() hook from Tanstack query for delete api call and used queryClient instance methods for updating cache data.
+- Used nullish coalescing operator for mapping and conditional rendering into jsx.
 
 
 
