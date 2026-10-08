@@ -27,3 +27,15 @@ export const deleteIndividualPost = async (id) => {
     console.log(err.message);
   }
 };
+
+export const updateIndividualPost = async (id) => {
+  try {
+    const response = await api.patch(`/posts/${id}`, {
+      title: "I have updated the title",
+    });
+
+    return response.data;
+  } catch (err) {
+    console.log(err.message);
+  }
+};

@@ -4,7 +4,11 @@ import {
   useQuery,
   useQueryClient,
 } from "@tanstack/react-query";
-import { fetchData, deleteIndividualPost } from "../../API/api";
+import {
+  fetchData,
+  deleteIndividualPost,
+  updateIndividualPost,
+} from "../../API/api";
 import { NavLink } from "react-router-dom";
 import { useState } from "react";
 export const FetchRQ = () => {
@@ -49,11 +53,27 @@ export const FetchRQ = () => {
     },
   });
 
+  const updateMutation = useMutation({
+    mutationFn: (id) => updateIndividualPost(id),
+
+    onSuccess: (data, id) => {
+      const upDatedData = queryClient.setQueryData(
+        ["posts", skip],
+        (postsData) => {
+          return (postsData.posts ?? postsData)?.map((item) => {
+            return item.id === id ? { ...item, title: data.title } : item;
+          });
+        },
+      );
+      console.log(upDatedData);
+    },
+  });
+
   // const deleteData = async (id)=>{
 
   // }
 
-  console.log(data);
+  // console.log(data);
 
   if (isPending) return <h1>Loading...</h1>;
   if (isError) return <h1>{error || "something went wrong"}</h1>;
@@ -76,6 +96,12 @@ export const FetchRQ = () => {
                   onClick={() => deleteMutation.mutate(item.id)}
                 >
                   Delete
+                </button>
+                <button
+                  className="btn btn-primary"
+                  onClick={() => updateMutation.mutate(item.id)}
+                >
+                  Update
                 </button>
               </div>
             </div>
