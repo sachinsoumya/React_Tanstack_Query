@@ -39,3 +39,15 @@ export const updateIndividualPost = async (id) => {
     console.log(err.message);
   }
 };
+
+export const fetchUsers = async () => {
+  try {
+    const users = await axios.get(`https://api.github.com/users?per_page=10`);
+
+    console.log(users.data);
+
+    return users.data;
+  } catch (err) {
+    console.log(err.message);
+  }
+};

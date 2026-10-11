@@ -9,6 +9,7 @@ import { Home } from "./components/Ui/Home";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { IndividualPost } from "./components/Ui/IndividualPost";
+import { InfiniteScroll } from "./components/Ui/InfiniteScroll";
 
 const router = createBrowserRouter([
   {
@@ -30,6 +31,10 @@ const router = createBrowserRouter([
       {
         path:"/post/:id",
         element:<IndividualPost/>
+      },
+      {
+        path:"/infinite-scroll",
+        element:<InfiniteScroll />
       }
     ],
   },

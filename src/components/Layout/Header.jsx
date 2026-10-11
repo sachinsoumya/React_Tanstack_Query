@@ -36,6 +36,9 @@ export const Header = () => {
             <li>
               <NavLink to="/react-query">FetchRQ</NavLink>
             </li>
+            <li>
+              <NavLink to="/infinite-scroll">Infinite Scroll </NavLink>
+            </li>
           </ul>
         </div>
         <a className="btn btn-ghost text-xl">daisyUI</a>
@@ -51,6 +54,9 @@ export const Header = () => {
           <li>
             <NavLink to="/react-query">Item 3</NavLink>
           </li>
+          <li>
+              <NavLink to="/infinite-scroll">Infinite Scroll </NavLink>
+            </li>
         </ul>
       </div>
       <div className="navbar-end">
